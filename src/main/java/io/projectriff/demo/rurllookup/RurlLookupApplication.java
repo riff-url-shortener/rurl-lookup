@@ -46,7 +46,8 @@ public class RurlLookupApplication {
         if (param.equalsIgnoreCase("topDomains")) {
             return getDomainLeaderBoard();
         }
-        return redisTemplate.opsForValue().get(param);
+        String url = redisTemplate.opsForValue().get(param);
+        return url == null ? "Not shortened previously" : url;
     }
 
     private String getDomainLeaderBoard() {
